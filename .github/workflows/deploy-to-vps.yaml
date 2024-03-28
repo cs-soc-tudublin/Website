@@ -1,0 +1,32 @@
+name: Deploy Website to VPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Build and Deploy with Docker Compose
+      env:
+        EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          cd /src/csppStaticSite
+
+          # Pull the latest changes
+          git pull origin master
+
+          # Use Docker Compose to rebuild and restart the container with the new image
+          EXPOSED_PORT=${EXPOSED_PORT} docker-compose up -d --build
+        EOF
