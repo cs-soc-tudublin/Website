@@ -22,7 +22,7 @@ jobs:
         EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-          cd /src/csppStaticSite
+          cd /src/Website
 
           # Pull the latest changes
           git pull origin master
