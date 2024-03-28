@@ -28,5 +28,5 @@ jobs:
           git pull origin master
 
           # Use Docker Compose to rebuild and restart the container with the new image
-          EXPOSED_PORT=${EXPOSED_PORT} docker-compose up -d --build
+          EXPOSED_PORT=${EXPOSED_PORT} docker compose up -d --build
         EOF
