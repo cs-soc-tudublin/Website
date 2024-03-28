@@ -27,6 +27,9 @@ jobs:
           # Pull the latest changes
           git pull origin master
 
+          # Add the .env
+          echo "EXPOSED_PORT=${EXPOSED_PORT}" > .env
+
           # Use Docker Compose to rebuild and restart the container with the new image
-          EXPOSED_PORT=${EXPOSED_PORT} docker compose up -d --build
+          docker compose up -d --build
         EOF
