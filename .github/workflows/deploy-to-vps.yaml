@@ -22,11 +22,14 @@ jobs:
         EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-        cd /src/Website
-        touch .env
-        chmod 644 .env
-        echo "EXPOSED_PORT=\${EXPOSED_PORT}" > .env
-        git reset --hard HEAD
-        git pull origin master
-        docker compose up -d --build
+          cd /src/Website
+          
+          git reset --hard HEAD
+          git pull origin master
+
+          touch .env
+          chmod 644 .env
+          echo "EXPOSED_PORT=\${EXPOSED_PORT}" > .env
+          
+          docker compose up -d --build
         EOF
