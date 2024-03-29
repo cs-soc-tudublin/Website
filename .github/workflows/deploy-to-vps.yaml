@@ -29,7 +29,7 @@ jobs:
 
           touch .env
           chmod 644 .env
-          echo "EXPOSED_PORT=\${EXPOSED_PORT}" > .env
+          echo "EXPOSED_PORT=${EXPOSED_PORT}" > .env
           
           docker compose up -d --build
         EOF
