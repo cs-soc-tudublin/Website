@@ -18,8 +18,6 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Build and Deploy with Docker Compose
-      env:
-        EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
           cd /src/Website
@@ -29,7 +27,7 @@ jobs:
 
           touch .env
           chmod 644 .env
-          echo "EXPOSED_PORT=${EXPOSED_PORT}" > .env
+          echo "EXPOSED_PORT=${{secrets.EXPOSED_PORT}}" > .env
           
           docker compose up -d --build
         EOF
