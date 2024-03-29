@@ -22,14 +22,11 @@ jobs:
         EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-          cd /src/Website
-
-          # Pull the latest changes
-          git pull origin master
-
-          # Add the .env
-          echo "EXPOSED_PORT=${EXPOSED_PORT}" > .env
-
-          # Use Docker Compose to rebuild and restart the container with the new image
-          docker compose up -d --build
+        cd /src/Website
+        touch .env
+        chmod 644 .env
+        echo "EXPOSED_PORT=\${EXPOSED_PORT}" > .env
+        git reset --hard HEAD
+        git pull origin master
+        docker-compose up -d --build
         EOF
