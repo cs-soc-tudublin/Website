@@ -57,13 +57,13 @@ body {
 }
 
 .title {
-	font-family: 'Consolas', monospace;
+	font-family: 'IBM Plex Mono', monospace;
 	font-weight: 700;
 	text-shadow: 5px 5px 5px 5px var(--grey-1);
 }
 
 .subtitle {
-	font-family: 'Comic Sans', sans-serif;
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-weight: 200;
 	text-shadow: 5px 5px 5px 5px var(--grey-1);
 }
