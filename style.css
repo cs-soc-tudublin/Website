@@ -39,7 +39,7 @@
 html,
 body {
 	background-color: var(--black);
-	font-family: 'IBM Plex Sans', sans-serif;
+	font-family: 'consolas', sans-serif;
 	color: var(--white);
 	color-scheme: dark;
 	background-attachment: fixed;
