@@ -18,18 +18,16 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Build and Deploy with Docker Compose
-      env:
-        EXPOSED_PORT: ${{ secrets.EXPOSED_PORT }}
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
           cd /src/Website
-
-          # Pull the latest changes
+          
+          git reset --hard HEAD
           git pull origin master
 
-          # Add the .env
-          echo "EXPOSED_PORT=${EXPOSED_PORT}" > .env
-
-          # Use Docker Compose to rebuild and restart the container with the new image
+          touch .env
+          chmod 644 .env
+          echo "EXPOSED_PORT=${{secrets.EXPOSED_PORT}}" > .env
+          
           docker compose up -d --build
         EOF
