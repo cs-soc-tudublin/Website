@@ -34,6 +34,8 @@
 	--cspp-blue-2: #462ab3;
 	--cspp-blue-3: #4159ff;
 	--cspp-blue-4: #549fff;
+
+	--evil: #b20300 !important;
 }
 
 html,
@@ -102,4 +104,8 @@ body {
 
 .blue4{
     color: var(--cspp-blue-4);
+}
+
+.evil{
+	color: var(--evil);
 }

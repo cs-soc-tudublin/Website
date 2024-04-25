@@ -6,15 +6,37 @@
     <link rel="icon" type="image/x-icon" href="cspp.webp">
     <link rel="stylesheet" href="style.css">
     <title>CS++</title>
+
 </head>
 <body>
-    <img src="cspp.webp" class="logo">
+    <img id="image" src="cspp.webp" class="logo">
     <h2 class="subtitle medium nogap">
-        <strong class="blue3">We</strong> are TU Dublin's <strong class="blue3">Computer Science Society.</strong>
+        <strong id="emphasis" class="blue3">We</strong> are TU Dublin's <strong id="other-emphasis" class="blue3">Computer Science Society.</strong>
     </h2>
 
-    <h2 class="subtitle nogap">
+    <h2 id="coming-soon" class="subtitle nogap">
         Website coming soon...
     </h2>
+
+    <script>
+        const random = Math.random();
+        const doItSansQuestionMark = Math.round(random * 100);
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const imageElement = document.getElementById('image');
+            const emphOne = document.getElementById('emphasis');
+            const emphTwo = document.getElementById('other-emphasis');
+            const comingSoon = document.getElementById('coming-soon');
+            
+            if(doItSansQuestionMark == 100){
+                imageElement.src = "csmm.png";
+                image.alt = "Evil CS++ Logo";
+                emphOne.classList.replace('blue3', 'evil');
+                emphTwo.classList.replace('blue3', 'evil');
+                emphTwo.innerText = "EVIL Computer Science Society";
+                comingSoon.innerHTML = "Website coming <strong class='evil'>NEVER!!!!</strong>";
+            }
+        })
+    </script>
 </body>
 </html>
